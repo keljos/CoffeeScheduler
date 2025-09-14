@@ -48,14 +48,14 @@ Coffee Scheduler is a Java application that is designed to help a group of colle
 
 3. Build the project using Gradle:
    ```
-   ./gradlew build
+   gradle build
    ```
 
 ### Running the Application
 
 To run the Coffee Scheduler application, use the following command:
 ```
-./gradlew run
+gradle run --console=plain
 ```
 
 Follow the prompts in the console to input your coffee preferences and plan duration.
