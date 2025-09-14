@@ -177,18 +177,18 @@ public class CoffeeScheduler {
      */
     public static void printScheduleToFile(double[] coffeePrices, int[] actualVisitCounts, int planDuration, double totalBillPerVisit) {
         String fileName = "CoffeeSchedule.txt";
-        int day = 1;
+        int day = 0;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             String summary = getSummary(coffeePrices, actualVisitCounts, planDuration, totalBillPerVisit);
             writer.write(summary);
             while (day <= planDuration) {
                 for (int i = COFFEE_DRINKERS_CNT - 1; i >= 0; i--) {
+                    day++;  // This ensures that we break out of the loop when all visits are done
                     if (actualVisitCounts[i] <= 0) continue; // Skip if the coffee drinker already paid all his visits
                     if (day > planDuration) break; // Stop if we've reached the plan duration
                     writer.write("Day " + day + ": " + COFFEE_DRINKERS[i] + " buys coffee for the group.\n");
                     if (day % 10 == 0) writer.newLine(); // Add a blank line every 10 lines for readability
                     actualVisitCounts[i] = actualVisitCounts[i] - 1; // Decrement the visit count after writing to file
-                    day++;
                 }
             }
             System.out.println("Coffee buying schedule written to " + fileName);
@@ -206,16 +206,16 @@ public class CoffeeScheduler {
      */
     public static void printScheduleToConsole(double[] coffeePrices, int[] actualVisitCounts, int planDuration, double totalBillPerVisit) {
         String summary = getSummary(coffeePrices, actualVisitCounts, planDuration, totalBillPerVisit);
-        int day = 1;
+        int day = 0;
         System.out.println(summary);
         while (day <= planDuration) {
             for (int i = COFFEE_DRINKERS_CNT - 1; i >= 0; i--) {
+                day++;  // This ensures that we break out of the loop when all visits are done
                 if (actualVisitCounts[i] <= 0) continue; // Skip if the coffee drinker already paid all his visits
                 if (day > planDuration) break; // Stop if we've reached the plan duration
                 System.out.println("Day " + day + ": " + COFFEE_DRINKERS[i] + " buys coffee for the group.");
                 if (day % 10 == 0) System.out.println(); // Add a blank line every 10 lines for readability
                 actualVisitCounts[i] = actualVisitCounts[i] - 1; // Decrement the visit count after writing to file
-                day++;
             }
         }
     }
