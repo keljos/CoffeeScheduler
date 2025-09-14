@@ -14,9 +14,9 @@ Coffee Scheduler is a Java application that is designed to help a group of colle
 - Step 3: Calculate percentage variance between each individual's menu cost vs average calculated price in step 2.
 - Step 4: Calcuate ideal visit count for average drink price by dividing the total planned visits by the number of coffee drinkers.
 - Step 5: Calculate true required visits for each individual by multiplying the ideal visit count from step 4 with the percentage variance calculated in step 3. Since visits cannot be fractions round to the nearest whole number.
-- Step 6: Generate a summary
-   Step 6.a: Total planned visits by each individual based off step 5
-   Step 6.b: Difference between the menu price of their drink choice vs what they paid [(# of times individual paid * total cost per visit) / plan duration]
+- Step 6: Generate a summary:
+   - Step 6.a: Total planned visits by each individual based off step 5.
+   - Step 6.b: Difference between the menu price of their drink choice vs what they paid [(# of times individual paid * total cost per visit) / plan duration].
 - Step 7: Generate the visit schedule of who pays for the group by iterating through the list of planned visits per individual. Start with the individual with the most expensive drink and proceeding in descending order, decrementing the number of remaining visits left for each individual at the end of the loop.
 - Step 8: Print the summary and schedule to console or file as per the user's preference.
 
