@@ -5,7 +5,14 @@ Coffee Scheduler is a Java application that is designed to help a group of colle
 ## Design Notes
 
 - The CoffeeScheduler program builds the optimal fair schedule by finding the average cost of a cup of coffee, considering the total cost of the group's preferred drinks, and the variance of each individual's drink choice from that overall average. From there, the program calculates what percentage of the total planned visits each individual should pay for the group. The visits are then set in an order such that the individuals with the most expensive preferred drinks pay first, which ensures that for shorter durations the individuals with less expensive preferred drinks are not unfairly penalized.
-- Visits cannot be partial! Due to rounding up to whole visit numbers, the program generates increasingly more fair schedules as the number of planned visits increases. Similarly, if the total number of planned visits are low, there could be a greater variation in the average cost each individual pays over the course of the plan verses the actual cost of their preferred drink. 
+- Visits cannot be partial! Due to rounding up to whole visit numbers, the program generates increasingly more fair schedules as the number of planned visits increases. Similarly, if the total number of planned visits are low, there could be a greater variation in the average cost each individual pays over the course of the plan verses the actual cost of their preferred drink.
+
+## Assumptions
+
+- There will always be exactly seven coffee drinkers participating in the schedule.
+- Each participant will be present for every trip to the coffee shop.
+- Each participant will always get their favorite coffee. Trying new drinks is not allowed. (Sorry, Bob, no pumpkin spice latte for you in the fall!)
+- There will be at least 7 trips scheduled. The more trips scheduled, the more equatable the schedule, but fewer than 7 is not allowed.
 
 ## Algorithm
 
@@ -32,7 +39,6 @@ Coffee Scheduler is a Java application that is designed to help a group of colle
 ### Prerequisites
 
 - Java Development Kit (JDK) 8 or higher
-- Gradle 6.0 or higher
 
 ### Installation
 
