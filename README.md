@@ -4,8 +4,8 @@ Coffee Scheduler is a Java application that is designed to help a group of colle
 
 ## Design Notes
 
-- The CoffeeScheduler program builds the optimal fair schedule by finding the average cost of a cup of coffee, considering the total cost of the group's preferred drinks, and the variance of each individual's drink choice from that overall average. From there, the program calculates what percentage of the total planned visits each individual should pay for the group. The visits are then set in an order such that the individuals with the most expensive preferred drinks pay first, which ensures that for shorter durations the individuals with less expensive preferred drinks are not unfairly penalized.
-- Visits cannot be partial! Due to rounding up to whole visit numbers, the program generates increasingly more fair schedules as the number of planned visits increases. Similarly, if the total number of planned visits are low, there could be a greater variation in the average cost each individual pays over the course of the plan verses the actual cost of their preferred drink.
+- The CoffeeScheduler program builds the optimal fair schedule by considering the total cost of the each person's preferred drink, and maintaining a credit system that updates after each purchase for the group. For each trip, the algorithm updates each individual's credit based on whether they paid for drinks or not. For each iteration, it will pick the user who has the lowest credit value and assigns them to purchase the drinks taht day. This continues until the end of the desired plan duration.
+- As this program works on a credit system, the longer the plan duration the more number of times individuals with expensive drinks will be scheduled to purchase drinks. This means that the algorithm will make more equatible schedules for longer plan durations.
 
 ## Assumptions
 
@@ -17,24 +17,23 @@ Coffee Scheduler is a Java application that is designed to help a group of colle
 ## Algorithm
 
 - Step 1: Get user input for plan duration, output location, coffee prices, and validate the user input. If no input is provided use default(s) as appropriate.
-- Step 2: Calculate average price of a coffee (total cost per visit  / number of drinks per vist).
-- Step 3: Calculate percentage variance between each individual's menu cost vs average calculated price in step 2.
-- Step 4: Calcuate ideal visit count for average drink price by dividing the total planned visits by the number of coffee drinkers.
-- Step 5: Calculate true required visits for each individual by multiplying the ideal visit count from step 4 with the percentage variance calculated in step 3. Since visits cannot be fractions round to the nearest whole number.
-- Step 6: Generate a summary:
-   - Step 6.a: Total planned visits by each individual based off step 5.
-   - Step 6.b: Difference between the menu price of their drink choice vs what they paid [(# of times individual paid * total cost per visit) / plan duration].
-- Step 7: Generate the visit schedule of who pays for the group by iterating through the list of planned visits per individual. Start with the individual with the most expensive drink and proceeding in descending order, decrementing the number of remaining visits left for each individual at the end of the loop.
-- Step 8: Print the summary and schedule to console or file as per the user's preference.
+- Step 2: Calculate the total cost per visit to the coffee shop.
+- Step 3: Identify the individual with the most expensive coffee.
+- Step 4: Generate the schedule order:
+   - Step 4a: Initialize the nextPayer with the person with the most expensive drink identified in 3.
+   - Step 4b: In a loop, for every visit calculate the updates credit for all individuals based on the formula:
+      - If individual is buying: new credit = current credit - menu price + total bill from step 2.
+      - For all others: new credit = current credit - menu price.
+   - Step 4c: Schedule (print) who pays the bill that trip.
+- Step 6: Generate a summary.
 
 
 ## Getting Started
 
-- The program allows for specifying the desired schedule duration, price list, and whether to print the result to console or a file.
+- The program allows for specifying the desired schedule duration and price list.
 - Default values for each of the inputs are provided if the user does not specify their own values:
    - Default plan duration: 68 days
    - Default coffee price list: [3, 4, 5, 5, 5, 6, 6] (based on local coffee shop prices)
-   - Default output location: Console
 
 ### Prerequisites
 
@@ -60,3 +59,7 @@ java -jar CoffeeScheduler.jar
 ```
 
 Follow the prompts in the console to input your coffee preferences and plan duration.
+
+### Notes
+
+The jar file contains the code in the src folder. A alternative version that I originally implemented can be found in the src_lessEfficient folder.
