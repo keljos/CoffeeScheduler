@@ -4,7 +4,7 @@ Coffee Scheduler is a Java application that is designed to help a group of colle
 
 ## Design Notes
 
-- The CoffeeScheduler program builds the optimal fair schedule by considering the total cost of the each person's preferred drink, and maintaining a credit system that updates after each purchase for the group. For each trip, the algorithm updates each individual's credit based on whether they paid for drinks or not. For each iteration, it will pick the user who has the lowest credit value and assigns them to purchase the drinks taht day. This continues until the end of the desired plan duration.
+- The CoffeeScheduler program builds the optimal fair schedule by considering the total cost of each person's preferred drink, and maintaining a credit system that updates after each purchase for the group. For each trip, the algorithm updates each individual's credit based on whether they paid for drinks or not. For each iteration, it will pick the user who has the lowest credit value and assigns them to purchase the drinks taht day. This continues until the end of the desired plan duration.
 - As this program works on a credit system, the longer the plan duration the more number of times individuals with expensive drinks will be scheduled to purchase drinks. This means that the algorithm will make more equatible schedules for longer plan durations.
 
 ## Assumptions
@@ -24,8 +24,8 @@ Coffee Scheduler is a Java application that is designed to help a group of colle
    - Step 4b: In a loop, for every visit calculate the updates credit for all individuals based on the formula:
       - If individual is buying: new credit = current credit - menu price + total bill from step 2.
       - For all others: new credit = current credit - menu price.
-   - Step 4c: Schedule (print) who pays the bill that trip.
-- Step 6: Generate a summary.
+      - Schedule (print) who pays the bill that trip.
+- Step 5: Generate overall summary of total cost of individuals and the average price they paid. 
 
 
 ## Getting Started
@@ -62,4 +62,4 @@ Follow the prompts in the console to input your coffee preferences and plan dura
 
 ### Notes
 
-The jar file contains the code in the src folder. A alternative version that I originally implemented can be found in the src_lessEfficient folder.
+The jar file contains the code in the src folder. A alternative version that I originally implemented can be found in the src_old folder.
